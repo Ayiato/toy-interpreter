@@ -5,9 +5,6 @@ import interpreter.exceptions.ADTException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Implementation of IDictionary that wraps a java.util.HashMap.
- */
 public class MyDictionary<K, V> implements IDictionary<K, V> {
     private final Map<K, V> map = new HashMap<>();
 

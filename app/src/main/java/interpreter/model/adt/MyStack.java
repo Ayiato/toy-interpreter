@@ -5,11 +5,7 @@ import interpreter.exceptions.ADTException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Implementation of IStack that wraps a java.util.ArrayDeque.
- * We only "forward" the calls to the deque, and add our own error
- * (ADTException) when popping from an empty stack.
- */
+
 public class MyStack<T> implements IStack<T> {
     private final Deque<T> stack = new ArrayDeque<>();
 

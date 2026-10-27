@@ -5,9 +5,7 @@ import interpreter.exceptions.ADTException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implementation of IList that wraps a java.util.ArrayList.
- */
+
 public class MyList<T> implements IList<T> {
     private final List<T> list = new ArrayList<>();
 
