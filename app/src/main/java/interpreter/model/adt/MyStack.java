@@ -29,7 +29,6 @@ public class MyStack<T> implements IStack<T> {
 
     @Override
     public String toString() {
-        // ArrayDeque prints the top element first, e.g. [s1, s2, s3]
         return stack.toString();
     }
 }

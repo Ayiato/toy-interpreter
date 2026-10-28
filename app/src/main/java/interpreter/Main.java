@@ -1,7 +1,9 @@
 package interpreter;
 
+import interpreter.view.TextMenu;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("test entry point :D");
+        new TextMenu().show();
     }
 }

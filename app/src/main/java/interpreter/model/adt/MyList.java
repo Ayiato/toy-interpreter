@@ -29,7 +29,6 @@ public class MyList<T> implements IList<T> {
 
     @Override
     public String toString() {
-        // e.g. [1, 2]
         return list.toString();
     }
 }

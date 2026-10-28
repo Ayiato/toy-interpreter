@@ -36,7 +36,6 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
 
     @Override
     public String toString() {
-        // e.g. {v=2, a=false}
         return map.toString();
     }
 }
