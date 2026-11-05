@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.model.type.BoolType;
 import interpreter.model.type.IntType;
+import interpreter.model.type.StringType;
 import org.junit.jupiter.api.Test;
 
 class ValueTest {
@@ -36,3 +37,4 @@ class ValueTest {
         assertEquals("true", new BoolValue(true).toString());
     }
 }
+
