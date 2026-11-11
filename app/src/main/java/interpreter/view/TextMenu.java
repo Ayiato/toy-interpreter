@@ -13,7 +13,7 @@ public class TextMenu {
 
     private void printMenu() {
         for (Command c : commands.values())
-            System.out.printf("%4s : %s%n", c.getKey(), c.getDescription());
+            System.out.printf("%s : %s%n", c.getKey(), c.getDescription());
     }
 
     public void show() {

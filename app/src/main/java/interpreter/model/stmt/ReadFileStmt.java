@@ -25,7 +25,12 @@ public record ReadFileStmt(IExp exp, String varName) implements IStmt {
             throw new StatementException("readFile: " + fileName + " is not open");
         try {
             String line = fileTable.lookup(fileName).readLine();
-            int n = (line == null) ? 0 : Integer.parseInt(line.strip());
+            int n;
+            if (line == null) {
+                n = 0;
+            } else {
+                n = Integer.parseInt(line.strip());
+            }
             symTable.update(varName, new IntValue(n));
         } catch (IOException e) {
             throw new StatementException("readFile: cannot read " + fileName + ": " + e.getMessage());
