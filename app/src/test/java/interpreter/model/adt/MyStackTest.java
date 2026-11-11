@@ -3,6 +3,7 @@ package interpreter.model.adt;
 import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.ADTException;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,6 @@ class MyStackTest {
 
     @BeforeEach
     void setUp() {
-        // every test starts with a new, empty stack
         stack = new MyStack<>();
     }
 
@@ -25,7 +25,6 @@ class MyStackTest {
         stack.push(1);
         stack.push(2);
         stack.push(3);
-        // last in, first out: 3 comes out first
         assertEquals(3, stack.pop());
         assertEquals(2, stack.pop());
         assertEquals(1, stack.pop());
@@ -36,5 +35,12 @@ class MyStackTest {
     void popOnEmptyStackThrows() {
         var ex = assertThrows(ADTException.class, () -> stack.pop());
         assertEquals("pop from an empty stack", ex.getMessage());
+    }
+
+    @Test
+    void toListHasTheTopFirst() {
+        stack.push(1);
+        stack.push(2);
+        assertEquals(List.of(2, 1), stack.toList());
     }
 }

@@ -3,6 +3,7 @@ package interpreter.model.adt;
 import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.ADTException;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +34,12 @@ class MyListTest {
         list.add(10);
         assertThrows(ADTException.class, () -> list.get(1));
         assertThrows(ADTException.class, () -> list.get(-1));
+    }
+
+    @Test
+    void toListKeepsTheOrder() {
+        list.add(10);
+        list.add(20);
+        assertEquals(List.of(10, 20), list.toList());
     }
 }

@@ -3,6 +3,7 @@ package interpreter.model.adt;
 import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.ADTException;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +42,24 @@ class MyDictionaryTest {
     @Test
     void updateOfMissingKeyThrows() {
         assertThrows(ADTException.class, () -> dict.update("x", 1));
+    }
+
+    @Test
+    void removeDeletesTheKey() throws ADTException {
+        dict.put("v", 2);
+        dict.remove("v");
+        assertFalse(dict.isDefined("v"));
+    }
+
+    @Test
+    void removeMissingKeyThrows() {
+        assertThrows(ADTException.class, () -> dict.remove("x"));
+    }
+
+    @Test
+    void toMapReturnsAllPairs() {
+        dict.put("a", 1);
+        dict.put("b", 2);
+        assertEquals(Map.of("a", 1, "b", 2), dict.toMap());
     }
 }
