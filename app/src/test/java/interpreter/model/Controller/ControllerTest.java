@@ -122,5 +122,6 @@ class ControllerTest {
         PrgState s = run(Examples.EX10);
         assertEquals(List.of(new IntValue(4), new IntValue(3), new IntValue(2), new IntValue(1), new IntValue(0)),
                 s.getOut().toList());
+
     }
 }
