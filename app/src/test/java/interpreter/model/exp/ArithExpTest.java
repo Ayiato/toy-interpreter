@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.adt.IDictionary;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.value.BoolValue;
@@ -26,41 +27,41 @@ class ArithExpTest {
 
     @Test
     void addition() throws MyException {
-        assertEquals(new IntValue(5), new ArithExp(ArithOp.ADD, num(2), num(3)).eval(symTable));
+        assertEquals(new IntValue(5), new ArithExp(ArithOp.ADD, num(2), num(3)).eval(symTable, new MyHeap()));
     }
 
     @Test
     void subtraction() throws MyException {
-        assertEquals(new IntValue(-1), new ArithExp(ArithOp.SUB, num(2), num(3)).eval(symTable));
+        assertEquals(new IntValue(-1), new ArithExp(ArithOp.SUB, num(2), num(3)).eval(symTable, new MyHeap()));
     }
 
     @Test
     void multiplication() throws MyException {
-        assertEquals(new IntValue(6), new ArithExp(ArithOp.MUL, num(2), num(3)).eval(symTable));
+        assertEquals(new IntValue(6), new ArithExp(ArithOp.MUL, num(2), num(3)).eval(symTable, new MyHeap()));
     }
 
     @Test
     void division() throws MyException {
-        assertEquals(new IntValue(3), new ArithExp(ArithOp.DIV, num(7), num(2)).eval(symTable));
+        assertEquals(new IntValue(3), new ArithExp(ArithOp.DIV, num(7), num(2)).eval(symTable, new MyHeap()));
     }
 
     @Test
     void respectsOperatorPrecedenceEncodedInTheTree() throws MyException {
         IExp e = new ArithExp(ArithOp.ADD, num(2), new ArithExp(ArithOp.MUL, num(3), num(5)));
-        assertEquals(new IntValue(17), e.eval(symTable));
+        assertEquals(new IntValue(17), e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void divisionByZeroThrows() {
         IExp e = new ArithExp(ArithOp.DIV, num(1), num(0));
-        var ex = assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        var ex = assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
         assertEquals("division by zero", ex.getMessage());
     }
 
     @Test
     void nonIntegerOperandThrows() {
         IExp e = new ArithExp(ArithOp.ADD, num(1), new ValueExp(new BoolValue(true)));
-        var ex = assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        var ex = assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
         assertEquals("second operand is not an integer", ex.getMessage());
     }
 }

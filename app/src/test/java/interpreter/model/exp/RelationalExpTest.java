@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
 class RelationalExpTest {
 
     private IValue eval(RelOp op, IValue a, IValue b) throws MyException {
-        return new RelationalExp(op, new ValueExp(a), new ValueExp(b)).eval(new MyDictionary<>());
+        return new RelationalExp(op, new ValueExp(a), new ValueExp(b)).eval(new MyDictionary<>(), new MyHeap());
     }
 
     @Test
